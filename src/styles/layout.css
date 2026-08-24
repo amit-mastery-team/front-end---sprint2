@@ -1,0 +1,256 @@
+/* App shell: sidebar, top bar, content column, and the responsive collapse.
+   Directional properties are logical so the RTL layout mirrors automatically. */
+
+.app {
+  display: grid;
+  grid-template-columns: var(--sidebar-w) 1fr;
+  min-height: 100vh;
+}
+
+/* ---- Sidebar ---- */
+
+.sidebar {
+  background: var(--nav);
+  color: var(--surface);
+  padding: 22px var(--s-4);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: auto;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  margin: 2px var(--s-2) var(--s-6);
+}
+
+.brand__mark {
+  width: 40px;
+  height: 40px;
+  flex: none;
+  border-radius: var(--r-md);
+  background: var(--red);
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  letter-spacing: -1px;
+}
+
+.brand__text b {
+  display: block;
+  font-size: var(--text-xl);
+}
+
+.brand__text span {
+  font-size: var(--text-sm);
+  color: var(--nav-brand-sub);
+}
+
+.nav__title {
+  font-size: 10px;
+  color: var(--nav-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin: var(--s-5) var(--s-3) var(--s-2);
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.nav a {
+  display: block;
+  color: var(--nav-text);
+  text-decoration: none;
+  padding: 10px var(--s-3);
+  border-radius: 9px;
+}
+
+.nav a:hover,
+.nav a.is-active {
+  background: var(--nav-hover);
+  color: var(--surface);
+}
+
+.nav a.is-active {
+  box-shadow: inset 3px 0 0 var(--gold);
+}
+
+html[dir='rtl'] .nav a.is-active {
+  box-shadow: inset -3px 0 0 var(--gold);
+}
+
+.sidebar__foot {
+  margin-top: var(--s-7);
+  border-top: 1px solid var(--nav-line);
+  padding: var(--s-4) var(--s-2);
+  color: var(--nav-foot);
+  font-size: var(--text-sm);
+}
+
+.sidebar__foot p {
+  margin: var(--s-2) 0 var(--s-3);
+}
+
+/* ---- Top bar ---- */
+
+.main {
+  min-width: 0;
+}
+
+.topbar {
+  min-height: var(--topbar-h);
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  padding-inline: var(--s-7);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.topbar__title h1 {
+  font-size: var(--text-2xl);
+  margin: 0;
+}
+
+.topbar__title p {
+  font-size: var(--text-sm);
+  color: var(--muted);
+  margin: 3px 0 0;
+}
+
+.topbar__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+
+.select-control {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: 9px;
+  padding: 9px 10px;
+}
+
+.avatar {
+  width: 34px;
+  height: 34px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--red-soft);
+  color: var(--red);
+  font-weight: 800;
+  display: grid;
+  place-items: center;
+}
+
+/* ---- Content column ---- */
+
+.content {
+  padding: var(--s-7);
+  max-width: var(--content-max);
+  margin: auto;
+}
+
+/* ---- Grids ---- */
+
+.grid {
+  display: grid;
+  gap: var(--s-4);
+}
+
+.g4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.g3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.split {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: var(--s-4);
+  align-items: start;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+}
+
+.spread {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--s-3);
+}
+
+/* ---- Responsive collapse ---- */
+
+@media (max-width: 1050px) {
+  .g4,
+  .g3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .split {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .app {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    height: auto;
+    position: relative;
+    padding: var(--s-3);
+  }
+
+  .nav {
+    flex-direction: row;
+    gap: 5px;
+    overflow: auto;
+  }
+
+  .nav a {
+    white-space: nowrap;
+  }
+
+  .nav__title,
+  .sidebar__foot {
+    display: none;
+  }
+
+  .topbar {
+    position: relative;
+    padding: var(--s-3) var(--s-4);
+    flex-wrap: wrap;
+  }
+
+  .content {
+    padding: var(--s-4);
+  }
+
+  .g4,
+  .g3,
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero h2 {
+    font-size: 23px;
+  }
+}

@@ -1,0 +1,26 @@
+module.exports = {
+  root: true,
+  env: { browser: true, es2022: true },
+  parserOptions: { ecmaVersion: 'latest', sourceType: 'module', ecmaFeatures: { jsx: true } },
+  settings: { react: { version: 'detect' } },
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:react/jsx-runtime',
+    'plugin:react-hooks/recommended',
+    'plugin:jsx-a11y/recommended',
+    'prettier',
+  ],
+  ignorePatterns: ['dist', 'node_modules'],
+  rules: {
+    'no-console': ['warn', { allow: ['warn', 'error'] }],
+    'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    complexity: ['warn', 10],
+    'max-depth': ['warn', 3],
+    'max-lines-per-function': ['warn', { max: 90, skipBlankLines: true, skipComments: true }],
+    eqeqeq: ['error', 'smart'],
+    'prefer-const': 'error',
+    'react/prop-types': 'error',
+    'react/jsx-no-useless-fragment': 'warn',
+  },
+};

@@ -1,0 +1,32 @@
+/* A deliberately small utility set: spacing rhythm and text direction only.
+   Anything with visual identity belongs in components.css. */
+
+.u-mt-2 {
+  margin-top: var(--s-2);
+}
+
+.u-mt-3 {
+  margin-top: var(--s-3);
+}
+
+.u-mt-4 {
+  margin-top: var(--s-4);
+}
+
+.u-mb-3 {
+  margin-bottom: var(--s-3);
+}
+
+.u-my-4 {
+  margin-block: var(--s-4);
+}
+
+.u-tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Keeps technical strings (request lines, IDs) readable inside an RTL layout. */
+.u-ltr {
+  direction: ltr;
+  text-align: start;
+}
